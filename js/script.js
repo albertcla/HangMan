@@ -8,10 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*Creacion de botones*/
     for (var i = 0; i < 26; i++) {
-        document.getElementsByClassName("alphabet")[0].appendChild(document.createElement("a"));
-        document.getElementsByTagName("a")[i].innerHTML = String.fromCharCode(65 + i);
-        document.getElementsByTagName("a")[i].id = String.fromCharCode(65 + i);
-        document.getElementsByTagName("a")[i].addEventListener("click", check);
+        document.getElementsByClassName("alphabet")[0].appendChild(document.createElement("button"));
+        document.getElementsByTagName("button")[i].innerHTML = String.fromCharCode(65 + i);
+        document.getElementsByTagName("button")[i].id = String.fromCharCode(65 + i);
+        document.getElementsByTagName("button")[i].addEventListener("click", check);
     }
     
     /*Creacion de caracteres ocultos*/
@@ -28,17 +28,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /*Vidas*/
     var live = 10;
+    document.getElementById("lives").innerHTML = live;
     function livesDown() {
         live--;
+        document.getElementById("lives").innerHTML = live;
+        if (live == 0) {
+            alert("Game Over");
+        }
     };
-    document.getElementById("lives").innerHTML = live;
+    
     
     /*Check*/
     function check() {
-        if (this.id == "A") {
-            alert("OK");
-        } else {
-            alert("MAL");
+        for (var i = 0; i < person.length; i++) {
+            if (person[i] == this.id || person[i] == this.id.toLowerCase()) {
+                document.getElementsByTagName('span')[i].innerHTML = person[i];
+            }
         }
+        if (person.indexOf(this.id) !== -1 || person.indexOf(this.id.toLowerCase()) !== -1) {
+            this.className = "pass";
+        } else {
+            this.className = "fail";
+            livesDown();
+        }
+        this.disabled = true;
     };
 });
