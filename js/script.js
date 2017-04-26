@@ -1,68 +1,69 @@
-document.addEventListener("DOMContentLoaded", function () {
+$(document).ready(function(){
 
-    /*Generacion de contenido aleatorio*/
+    /*Random Content*/
     science = ["Leonardo da Vinci", "Max Planck", "Isaac Newton", "Nikola Tesla", "Albert Einstein", "Stephen Hawking", "Michio Kaku", "Neil deGrasse Tyson", "Carl Sagan", "Isaac Asimov"];
     var person = (function randomWord() {
         return science[Math.floor((Math.random() * 10))];
     })();
 
-    /*Creacion de botones*/
+    /*Buttons Creation*/
     for (var i = 0; i < 26; i++) {
-        document.getElementsByClassName("alphabet")[0].appendChild(document.createElement("button"));
-        document.getElementsByTagName("button")[i].innerHTML = String.fromCharCode(65 + i);
-        document.getElementsByTagName("button")[i].id = String.fromCharCode(65 + i);
-        document.getElementsByTagName("button")[i].addEventListener("click", check);
+        $('.alphabet').eq(0).append($('<button></button>'));
+        $('button').eq(i).html(String.fromCharCode(65 + i));
+        $('button').eq(i).attr('id',String.fromCharCode(65 + i));
+        $('button').eq(i).on('click', check);
     }
     
-    /*Creacion de caracteres ocultos*/
+    /*Hidden Chars Creation*/
     var lett = " _ ";
     var spac = " - ";
     for (var i in person) {
-        document.getElementById("words").appendChild(document.createElement("span"));
+        $('#words').append($('<span></span>'))
         if (person[i] !== " ") {
-            document.getElementsByTagName("span")[i].innerHTML = lett;
+            $('span').eq(i).html(lett);
         } else {
-            document.getElementsByTagName("span")[i].innerHTML = spac;
+            $('span').eq(i).html(spac);
         }
     }
 
-    /*Vidas*/
+    /*Lives*/
     var live = 10;
-    document.getElementById("lives").innerHTML = live;
+    $('#lives').html(live);
     function livesDown() {
         --live;
-        document.getElementById("lives").innerHTML = live;
+        $('#lives').html(live);
         if (live == 0) {
-            document.getElementById("state").innerHTML = "Game Over";
+            $('#state').html("Game Over");
+            $('.alphabet button').prop('disabled', true);
             restart();
         }
     };  
     
     /*Try Again*/
     function restart () {
-        var x = document.createElement("button");
-        var t = document.createTextNode("Restart");
-        x.appendChild(t);
-        x.id = "restart";
-        document.body.appendChild(x);
-        document.getElementById("restart").addEventListener("click", function() {
+        $('body').append('<button id="restart">Restart</button>');
+        $('#restart').on('click', function() {
             location.reload();
-        })
+        });
     };
     
     /*Check*/
     function check() {
         for (var i = 0; i < person.length; i++) {
             if (person[i] == this.id || person[i] == this.id.toLowerCase()) {
-                document.getElementsByTagName('span')[i].innerHTML = person[i];
+                /*document.getElementsByTagName('span')[i].innerHTML = person[i];*/
+                $('span').eq(i).html(person[i]);
             }
         }
         if (person.indexOf(this.id) !== -1 || person.indexOf(this.id.toLowerCase()) !== -1) {
-            this.className = "pass";
+            /*this.className = "pass";*/
+            $(this).addClass('pass');
         } else {
-            this.className = "fail";
+            /*this.className = "fail";*/
+            $(this).addClass('fail');
             livesDown();
         }
-        this.disabled = true;
+        /*this.disabled = true;*/
+        $(this).prop('disabled', true);
     };
 });
