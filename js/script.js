@@ -30,13 +30,25 @@ document.addEventListener("DOMContentLoaded", function () {
     var live = 10;
     document.getElementById("lives").innerHTML = live;
     function livesDown() {
-        live--;
+        --live;
         document.getElementById("lives").innerHTML = live;
         if (live == 0) {
-            alert("Game Over");
+            document.getElementById("state").innerHTML = "Game Over";
+            restart();
         }
-    };
+    };  
     
+    /*Try Again*/
+    function restart () {
+        var x = document.createElement("button");
+        var t = document.createTextNode("Restart");
+        x.appendChild(t);
+        x.id = "restart";
+        document.body.appendChild(x);
+        document.getElementById("restart").addEventListener("click", function() {
+            location.reload();
+        })
+    };
     
     /*Check*/
     function check() {

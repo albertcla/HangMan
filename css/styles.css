@@ -21,12 +21,16 @@ button:hover {
     background-color: #EFEFEF;
 }
 
-button.pass{
+button.pass {
     background-color: #61ea61;
 }
 
-button.fail{
+button.fail {
     background-color: #e83e3e;
+}
+
+button#restart {
+    width: 125px;
 }
 
 .wrapper {
