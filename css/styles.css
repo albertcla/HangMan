@@ -1,3 +1,4 @@
+/*Etiquetas*/
 body {
     padding: 0px;
     margin: 0px;
@@ -5,11 +6,36 @@ body {
     text-align: center;
 }
 
+nav {
+    height: 30px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul li {
+    padding: 0px 13px;
+}
+
+input {
+    width: 500px;
+    height: 40px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    font: normal 1em/0.7em 'Playfair Display', serif;
+    text-align: center;
+}
+
 button {
     border: 2px solid #000000;
     border-radius: 5px;
     background-color: #FFFFFF;
-    width: 40px;
     height: 50px;
     padding: 0px 0px 0px 0px;
     margin: 10px;
@@ -17,20 +43,57 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #EFEFEF;
-}
-
-button.pass {
+/*Clases*/
+.pass {
     background-color: #61ea61;
 }
 
-button.fail {
+.fail {
     background-color: #e83e3e;
 }
 
-button#restart {
-    width: 125px;
+.btn-tiny {
+    width: 40px;
+}
+
+.btn-big {
+    width: 200px;
+    display: block;
+    margin: 0px auto;
+}
+
+/*Elementos*/
+#words {
+    height: 150px;
+}
+
+
+#words button {
+    /*position: absolute;
+    z-index: 1;
+    margin-left: -400px;*/
+    display: inline-block;
+}
+
+
+#words input {
+    /*position: absolute;
+    z-index: 1;
+    margin-left: -650px;
+    margin-top: 12px;*/
+    display: inline-block;
+}
+
+#info div {
+    display: inline-block;
+    margin: 0px 40px;
+}
+
+#hiddenWords {
+    position: relative;
+    z-index: 0;
+    display: inline-block;
+    width: 600px;
 }
 
 .wrapper {
@@ -43,4 +106,8 @@ button#restart {
     justify-content: space-between;
     align-content: center;
     flex-wrap: wrap;
+}
+
+.heart {
+    color: #9a0404;
 }
