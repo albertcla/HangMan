@@ -187,10 +187,14 @@ $(document).ready(function () {
     /*Player*/
     var $player = {
         name: "Player",
+<<<<<<< HEAD
         newPlayer: function(newName) {
             $player.name = newName;
             
         },
+=======
+        
+>>>>>>> 770b49419dbe6b9663bb6ef9d54eadd8102c3513
         won: 0,
         lose: 0,
         storage: {
@@ -218,6 +222,7 @@ $(document).ready(function () {
     $('nav ul li:first-child').html("Jugador: " + $player.name);
     $('nav ul li').eq(1).html("Partidas Ganadas: " + $player.won);
     $('nav ul li').eq(2).html("Partidas Perdidas: " + $player.lose);
+<<<<<<< HEAD
     
     /*LogIn Form*/
     $('h2').after('<div class="popUp">');
@@ -238,6 +243,8 @@ $(document).ready(function () {
             $('.popUp').eq(0).attr('style','display:none');
         }
     });
+=======
+>>>>>>> 770b49419dbe6b9663bb6ef9d54eadd8102c3513
 
     /*Game*/
     $game.showLives();
