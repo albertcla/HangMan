@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     var $game = {
         randomWord: person,
-        gameTime: 60,
+        gameTime: 6,
         countDown: function () {
             var $timerId = setInterval(function () {
                 if ($game.gameTime !== 1) {
@@ -111,7 +111,7 @@ $(document).ready(function () {
             $('.alphabet button').prop('disabled', true);
             $player.lose++;
             $('#hiddenWords').off('mouseenter');
-             $('.alphabet').off('mouseenter');
+            $('.alphabet').off('mouseenter');
             $('#words button').remove();
             $('#inputWord').remove();
             $game.tryAgain();
@@ -123,11 +123,12 @@ $(document).ready(function () {
             } else {
                 $('#restart').addClass('fail');
             }
-            $('#restart').on('click', function () {
-                localStorage.removeItem("game");
-                $player.storage.saveData();
-                location.reload();
-            });
+            $('#restart').on('click', $game.reStart);
+        },
+        reStart: function () {
+            localStorage.removeItem("game");
+            $player.storage.saveData();
+            location.reload();
         }
     };
     $game.storage.getData();
