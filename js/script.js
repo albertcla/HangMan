@@ -6,9 +6,14 @@ $(document).ready(function () {
         return science[Math.floor((Math.random() * 10))];
     })();
 
+    var $default = {
+        t0: 6,
+        lives0: 10,
+    };
+
     var $game = {
         randomWord: person,
-        gameTime: 6,
+        gameTime: $default.t0,
         countDown: function () {
             var $timerId = setInterval(function () {
                 if ($game.gameTime !== 1) {
@@ -56,7 +61,7 @@ $(document).ready(function () {
                 $game.setLives();
             }
         },
-        live: 10,
+        live: $default.lives0,
         setLives: function () {
             this.live--;
             this.showLives();
@@ -91,8 +96,8 @@ $(document).ready(function () {
                     $game.percent = gameJSON.percent;
                 } else {
                     $game.randomWord = person;
-                    $game.gameTime = 60;
-                    $game.live = 10;
+                    $game.gameTime = $default.t0;
+                    $game.live = $default.lives0;
                     $game.win = false;
                     $game.cLett = 0;
                     $game.percent = 0;
@@ -126,8 +131,8 @@ $(document).ready(function () {
             $('#restart').on('click', $game.reStart);
         },
         reStart: function () {
-            localStorage.removeItem("game");
             $player.storage.saveData();
+            localStorage.removeItem("game");
             location.reload();
         }
     };
@@ -190,7 +195,7 @@ $(document).ready(function () {
         name: "Player",
         newPlayer: function(newName) {
             $player.name = newName;
-            
+            $player.reStart();
         },
         won: 0,
         lose: 0,
@@ -212,6 +217,11 @@ $(document).ready(function () {
                 }
             }
         },
+        reStart: function () {
+            $player.won = 0;
+            $player.lose = 0;
+            $game.reStart();
+        }
     };
     $player.storage.getData();
     
