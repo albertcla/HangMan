@@ -79,7 +79,7 @@ button {
 
 /*Elementos*/
 .popUp {
-/*    display: none;*/
+    display: none;
     position: fixed;
     z-index: 1;
     padding-top: 100px; /* Location of the box */
@@ -93,6 +93,7 @@ button {
 }
 
 .popUp-content {
+    position: relative;
     display: flex;
     background-color: #fefefe;
     margin: auto;
@@ -102,9 +103,16 @@ button {
     font-size: 0.8em;
 }
 
+.popUp-container {
+    padding: 0.01em 16px;
+}
+
 .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 20px;
     color: #aaaaaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
 }

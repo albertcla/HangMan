@@ -220,13 +220,23 @@ $(document).ready(function () {
     $('nav ul li').eq(2).html("Partidas Perdidas: " + $player.lose);
     
     /*LogIn Form*/
-    $('h2').after('<div class="popUp">');
-    $('.popUp').eq(0).append('<div class="popUp-content"></span>');
-    $('.popUp-content').eq(0).append('<span class="close">&times;</span>');
-    $('.popUp-content').eq(0).append('<label for="namePlayer">Name:</label>');
-    $('.popUp-content').eq(0).append('<input type="text" id="namePlayer">');
-    $('.popUp-content').eq(0).append('<button class="inputSend"><i class="fa fa-share-square-o" aria-hidden="true"></i></button>');
-    $('.content').eq(0).click($player.newPlayer($('#namePlayer').val()));
+    $('h2').after('<div class="popUp"></div>');
+    $('.popUp').eq(0).append('<div class="popUp-content"></div>');
+    $('.popUp-content').eq(0).append('<div class="popUp-container"></div>');
+    $('.popUp-container').eq(0).append('<span class="close">&times;</span>');
+    $('.popUp-container').eq(0).append('<label for="namePlayer">Name:</label>');
+    $('.popUp-container').eq(0).append('<input type="text" id="namePlayer">');
+    $('.popUp-container').eq(0).append('<button class="inputSend"><i class="fa fa-share-square-o" aria-hidden="true"></i></button>');
+    $('.inputSend').eq(0).click(function() {
+        $player.newPlayer($('#namePlayer').val());
+        $('.popUp').eq(0).attr('style','display:none');
+    });
+    $('.inputSend').eq(0).keypress(function(key) {
+        if (key.which == 13) {
+            $player.newPlayer($('#namePlayer').val());
+            $('.popUp').eq(0).attr('style','display:none');
+        }
+    });
     $('nav ul li:first-child').click(function() {
         $('.popUp').eq(0).attr('style', 'display:block');
     });
