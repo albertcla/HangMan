@@ -7,7 +7,7 @@ $(document).ready(function () {
     })();
 
     var $default = {
-        t0: 6,
+        t0: 60,
         lives0: 10,
     };
 
@@ -32,9 +32,9 @@ $(document).ready(function () {
             $('#countDown').html($game.gameTime + " s.");
         },
         check: function () {
-            for (var i = 0; i < $game.randomWord.length; i++) {
+            for (var i = 0; i < ($game.randomWord.length + 1); i++) {
                 if ($game.randomWord[i] == $(this).attr('id') || $game.randomWord[i] == $(this).attr('id').toLowerCase()) {
-                    $('span').eq(i).html($game.randomWord[i]);
+                    $('span').eq(i+1).html($game.randomWord[i]);
                     $game.cLett++;
                     $game.setPercent();
                     $game.showPercent();
