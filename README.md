@@ -1,2 +1,2 @@
-# hangman
-Hangman play developed in jQuery
+# HANGMAN
+jQuery HangMan game
